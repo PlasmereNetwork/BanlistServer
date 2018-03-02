@@ -1,0 +1,52 @@
+/*
+ * Banlist Server: An HTTP server that serves the Templex banlist.
+ * Copyright (C) 2018  vtcakavsmoace
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+group 'co.templex'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'http://repo.bastian-oppermann.de/'
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'co.templex.banlist_server.Main',
+                'Implementation-Title': 'Templex Banlist Server',
+                'Implementation-Version': version
+        )
+    }
+}
+
+mainClassName = 'co.templex.banlist_server.Main'
+
+dependencies {
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+    compile group: 'org.nanohttpd', name: 'nanohttpd', version: '2.2.0'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.3'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
